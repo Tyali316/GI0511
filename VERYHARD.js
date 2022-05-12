@@ -11,3 +11,38 @@
 // Input: coins = [2], amount = 3
 // Output: -1
 // Note: You may assume that you have an infinite number of each kind of coin.
+
+function coinChange(coins, amount) {
+    var finalAmount = FindMinAmount(coins, 0, 0, amount, 0, amount + 1) 
+  function FindMinAmount(coins, i, currentSum, amount, count, result) {
+      if (amount == 0){
+          return 0
+      }
+
+      if (currentSum > amount){
+          return result
+      }
+
+      if (currentSum == amount){
+          result = Math.min(count, result)
+        return result
+      }
+      if (i <= coins.length-1){
+          count++
+          result = FindMinAmount(coins, 1, currentSum+coins[i], amount, count, result)
+
+          count--
+          result = FindMinAmount(coins, i+1, currentSum, amount, count, result)
+      }
+      return result
+  }
+     if (finalAmount == initalResult){
+         return -1
+     }
+     else{
+         return finalResult
+     }
+}
+
+console.log(coinChange([1,2,5],11));
+console.log(coinChange([2],3));
